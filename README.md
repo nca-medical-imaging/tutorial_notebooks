@@ -6,7 +6,12 @@ bioheat + SAR + Arrhenius solve. Give it a CT slice, needle positions and a
 power; it returns the necrosis field and the vessels it had to find — in
 milliseconds.
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JoKalk/colab_test_miccai2026/blob/ablation2d/ablation2d_colab.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nca-medical-imaging/tutorial_notebooks/blob/ablation2d/ablation2d_colab.ipynb)
+
+> **Private repo.** Colab needs two one-time things: connect your GitHub
+> account in Colab (Settings → GitHub) to open the notebook, and store a
+> GitHub token as the `GITHUB_TOKEN` secret (sidebar key icon) so the setup
+> cell can clone the branch.
 
 ## Run it
 
