@@ -1,0 +1,58 @@
+{
+ "_material_revision": "4aa9e3ae7ecf99ae4c42eca2df98a23c5f094ce435fd49e1d511a1495a4479a1",
+ "_uniphys_version": "0.1.0",
+ "_body_temp_k": 310.0,
+ "tissues": {
+  "background": {
+   "db_name": "connective tissue",
+   "material_id": 14,
+   "rho": 1.0264999446008005e-06,
+   "c": 2372.416748046875,
+   "k": 0.00039450000622309744,
+   "sigma": 7.919585914351046e-05,
+   "perfusion": 37.20000076293945,
+   "curated": [
+    "rho",
+    "c",
+    "k",
+    "sigma",
+    "perfusion",
+    "q_met"
+   ]
+  },
+  "liver": {
+   "db_name": "liver",
+   "material_id": 11,
+   "rho": 1.0787499604703044e-06,
+   "c": 3540.199951171875,
+   "k": 0.0005191111122258008,
+   "sigma": 0.0001850383705459535,
+   "perfusion": 860.4566650390625,
+   "curated": [
+    "rho",
+    "c",
+    "k",
+    "sigma",
+    "perfusion",
+    "q_met"
+   ]
+  },
+  "vessel": {
+   "db_name": "blood",
+   "material_id": 2,
+   "rho": 1.0497499260964105e-06,
+   "c": 3617.0,
+   "k": 0.0005168571951799095,
+   "sigma": 0.000662459759041667,
+   "perfusion": 10000.0,
+   "curated": [
+    "rho",
+    "c",
+    "k",
+    "sigma",
+    "perfusion",
+    "q_met"
+   ]
+  }
+ }
+}

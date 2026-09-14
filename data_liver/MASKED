@@ -1,0 +1,3 @@
+inputs[:, 0] (hounsfield) multiplied by (seg_liver | seg_vessel).
+needle and applicator_activation are NOT masked.
+targets are byte-identical to ../data.

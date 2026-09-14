@@ -1,29 +1,54 @@
-# Growing NCA Colab prototype
+# Ablation2d — MICCAI 2026 hands-on 3 (Colab test)
 
-This repository contains a deliberately small Google Colab experiment for a future MICCAI 2026 tutorial. A neural cellular automaton learns to grow the MICCAI France logo from one living cell.
+Branch deployment of the *Ablation planning with Neural Cellular Automata*
+hands-on: a chained NCA (~10k parameters) learns to replace a Pennes
+bioheat + SAR + Arrhenius solve. Give it a CT slice, needle positions and a
+power; it returns the necrosis field and the vessels it had to find — in
+milliseconds.
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JoKalk/colab_test_miccai2026/blob/main/growing_nca_colab.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JoKalk/colab_test_miccai2026/blob/ablation2d/ablation2d_colab.ipynb)
 
 ## Run it
 
-1. Open `growing_nca_colab.ipynb` in Colab using the badge above.
-2. Select **Runtime → Change runtime type → GPU**.
-3. Select **Runtime → Run all**.
-4. Watch the target, current NCA output, and loss curve refresh during training.
-5. Inspect the growth snapshots and download the branded MP4 or GIF at the end.
+1. Open `ablation2d_colab.ipynb` in Colab with the badge above (branch `ablation2d`).
+2. Select **Runtime → Change runtime type → T4 GPU**.
+3. Select **Runtime → Run all**. The first cell clones this branch (package,
+   corpus and checkpoint ship together — nothing else downloads).
 
-Colab hides setup, image-loading, and video-export implementation code by default. Users see the controls and outputs, while the NCA model and training loop remain visible as the tutorial's core learning material.
+## Run it locally
 
-The default experiment uses a small 32×32 target, a 12-channel cellular state, and 500 optimizer updates. This is intended as a quick Colab simplicity test. The training-update field accepts larger values such as 2000 or 5000 for longer runs.
+From the repo root, exactly what Colab runs:
 
-## Included controls
+```bash
+NCA_NOTEBOOK_QUICK=1 jupyter nbconvert --to notebook --execute \
+    --output /tmp/ablation2d_executed.ipynb ablation2d_colab.ipynb
+```
 
-- Target resolution
-- Unrestricted number of optimizer updates
-- Optional custom PNG or JPEG upload
-- Batch size and learning rate
-- Minimum and maximum growth duration
-- Live preview frequency
-- Direct high-resolution H.264 MP4 export with GIF fallback and download
+`NCA_NOTEBOOK_QUICK=1` is the test-harness switch: 48 cases per split,
+2 training epochs, full pipeline otherwise. Drop it for the real 24-epoch
+session run (or set `LOAD_PRETRAINED = True` in §3 to load the shipped
+checkpoint instead of training).
 
-No package installation or dataset download is required beyond loading the included target image.
+## What is on this branch
+
+| path | what |
+|---|---|
+| `ablation2d_colab.ipynb` | the runnable notebook (SOLUTION variant, 0 TODOs) |
+| `ablation2d/` | the plumbing package: data, model registry, training loop, viz, UI |
+| `data_liver/` | the corpus the notebook trains on — real patient CT masked to the liver |
+| `data/test.npz`, `data/real_slice.npz` | unmasked comparison slice + demo slice |
+| `checkpoints/ablation_cnca_liver.pt` | pretrained fallback (best measured model) |
+
+## Before this branch goes anywhere
+
+- **Patient data.** `data_liver/` and `data/` are de-identified real patient CT
+  (see `data_liver/DATASHEET.md`). Redistribution outside a governed context is
+  **not settled** — treat this branch as internal until it is.
+- **Upstream.** The notebook is authored in `miccai2026-nca-tutorial` via
+  `build_notebooks.py` (TUTORIAL + SOLUTION from one source). Only the setup
+  cell differs here, so it points at this repo/branch. Regenerate from upstream
+  before the session; do not hand-edit further.
+
+The TUTORIAL variant (6 TODOs across 4 cells, for participants) is generated
+from the same source and can be added to this branch once the deployment is
+validated.
