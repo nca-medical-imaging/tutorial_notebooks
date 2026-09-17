@@ -1,0 +1,6 @@
+ipython>=8
+jupyter>=1
+matplotlib>=3.7
+numpy>=1.24
+pillow>=10
+torch>=2.1
