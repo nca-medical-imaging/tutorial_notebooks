@@ -21,7 +21,8 @@ Participants will:
 1. an interactive Cellular Automata playground implemented as an embedded HTML/JavaScript app;
 2. configurable NCA model and training settings;
 3. a minimal PyTorch NCA training example; and
-4. an interactive browser app that runs the freshly trained model.
+4. a comparison with an embedded, longer-trained checkpoint; and
+5. an interactive browser app for comparing both models and their internal channels.
 
 The notebook is self-contained. The example image is embedded so that no additional download is required in Colab.
 
@@ -42,3 +43,13 @@ Create a Python environment and install the dependencies:
 python -m pip install -r requirements.txt
 jupyter notebook from_ca_to_nca.ipynb
 ```
+
+## Reproducing the pretrained model
+
+The embedded checkpoint uses the same minimal architecture and target as the live example. To reproduce it:
+
+```bash
+python scripts/train_pretrained_nca.py --iterations 3000 --output-dir models
+```
+
+The script samples rollout lengths between 24 and 40 steps and selects the best checkpoint using validation losses at 24, 32, 40, and 64 steps. Training configuration and evaluation history are stored in `models/pretrained_nca_metadata.json`.
