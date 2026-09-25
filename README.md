@@ -49,7 +49,8 @@ jupyter notebook from_ca_to_nca.ipynb
 The embedded checkpoint uses the same minimal architecture and target as the live example. To reproduce it:
 
 ```bash
-python scripts/train_pretrained_nca.py --iterations 3000 --output-dir models
+python scripts/train_pretrained_nca.py --iterations 5000 --rollout-min 32 --rollout-max 64 --output-dir models
+python scripts/embed_pretrained_nca.py
 ```
 
-The script samples rollout lengths between 24 and 40 steps and selects the best checkpoint using validation losses at 24, 32, 40, and 64 steps. Training configuration and evaluation history are stored in `models/pretrained_nca_metadata.json`.
+The training script samples rollout lengths between 32 and 64 steps and selects the best checkpoint using validation losses at 24, 32, 40, and 64 steps. Training configuration and evaluation history are stored in `models/pretrained_nca_metadata.json`. The embedding script copies the resulting state dictionary into the notebook so it remains self-contained in Colab.

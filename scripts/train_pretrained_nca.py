@@ -30,8 +30,8 @@ class TrainingConfig:
     state_channels: int = 8
     hidden_size: int = 32
     iterations: int = 3000
-    rollout_min: int = 24
-    rollout_max: int = 40
+    rollout_min: int = 32
+    rollout_max: int = 64
     learning_rate: float = 2e-3
     seed: int = 7
     evaluation_interval: int = 100
@@ -157,8 +157,12 @@ def save_checkpoint(
 def train(args: argparse.Namespace) -> None:
     config = TrainingConfig(
         iterations=args.iterations,
+        rollout_min=args.rollout_min,
+        rollout_max=args.rollout_max,
         evaluation_interval=args.evaluation_interval,
     )
+    if config.rollout_min < 1 or config.rollout_max < config.rollout_min:
+        raise ValueError("Require 1 <= rollout-min <= rollout-max.")
     random.seed(config.seed)
     np.random.seed(config.seed)
     torch.manual_seed(config.seed)
@@ -241,6 +245,8 @@ def train(args: argparse.Namespace) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--iterations", type=int, default=3000)
+    parser.add_argument("--rollout-min", type=int, default=32)
+    parser.add_argument("--rollout-max", type=int, default=64)
     parser.add_argument("--evaluation-interval", type=int, default=100)
     parser.add_argument("--device", choices=("cpu", "cuda"))
     parser.add_argument("--notebook", default="from_ca_to_nca.ipynb")
