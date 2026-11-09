@@ -14,9 +14,7 @@ All variants share the architecture defined here, which the notebook mirrors.
 from __future__ import annotations
 
 import argparse
-import base64
 import hashlib
-import io
 import json
 import random
 import time
@@ -120,27 +118,9 @@ class NCA(nn.Module):
         return state
 
 
-def read_embedded_png(notebook_path: Path) -> bytes:
-    """Read the target PNG that the notebook embeds as LIZARD_PNG_B64."""
-    notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
-    for cell in notebook["cells"]:
-        for line in cell.get("source", []):
-            if line.startswith("LIZARD_PNG_B64 = "):
-                return base64.b64decode(line.split('"')[1])
-    raise RuntimeError(f"No LIZARD_PNG_B64 found in {notebook_path}.")
-
-
-def load_target(path: Path, config: TrainingConfig, notebook: Path | None = None) -> torch.Tensor:
-    """Load an RGBA image, pad it to the grid, and premultiply alpha.
-
-    Falls back to the copy embedded in the notebook when the asset is missing.
-    """
-    if path.exists():
-        image = Image.open(path).convert("RGBA")
-    elif notebook is not None:
-        image = Image.open(io.BytesIO(read_embedded_png(notebook))).convert("RGBA")
-    else:
-        raise FileNotFoundError(path)
+def load_target(path: Path, config: TrainingConfig) -> torch.Tensor:
+    """Load an RGBA image, pad it to the grid, and premultiply alpha."""
+    image = Image.open(path).convert("RGBA")
     image = image.resize((config.emoji_size, config.emoji_size), Image.Resampling.LANCZOS)
     canvas = Image.new("RGBA", (config.grid_size, config.grid_size))
     offset = (config.grid_size - config.emoji_size) // 2
@@ -299,12 +279,7 @@ def train_variant(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--variants", nargs="+", default=list(VARIANTS), choices=list(VARIANTS))
-    parser.add_argument(
-        "--target",
-        default="assets/emoji_u1f98e.png",
-        help="RGBA target image; falls back to the copy embedded in --notebook.",
-    )
-    parser.add_argument("--notebook", default="from_ca_to_nca.ipynb")
+    parser.add_argument("--target", default="data/emoji_u1f98e.png", help="RGBA target image.")
     parser.add_argument("--iterations", type=int, default=TrainingConfig.iterations)
     parser.add_argument("--device", choices=("cpu", "cuda", "mps"))
     parser.add_argument("--output-dir", default="models")
@@ -318,7 +293,7 @@ def main() -> None:
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    target = load_target(Path(args.target), config, Path(args.notebook)).to(device)
+    target = load_target(Path(args.target), config).to(device)
     target_hash = hashlib.sha256(target.cpu().numpy().tobytes()).hexdigest()
 
     metadata_path = output_dir / "nca_variants_metadata.json"
