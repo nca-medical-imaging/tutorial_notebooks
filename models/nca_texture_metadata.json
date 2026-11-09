@@ -1,0 +1,180 @@
+{
+  "config": {
+    "pattern_size": 128,
+    "texture_size": 64,
+    "grid_size": 64,
+    "feed": 0.0367,
+    "kill": 0.0649,
+    "simulation_steps": 8000,
+    "state_channels": 12,
+    "hidden_size": 96,
+    "fire_rate": 0.5,
+    "iterations": 3000,
+    "batch_size": 4,
+    "pool_size": 1024,
+    "rollout_min": 32,
+    "rollout_max": 64,
+    "learning_rate": 0.002,
+    "overflow_weight": 1.0,
+    "seed": 7
+  },
+  "device": "mps",
+  "elapsed_seconds": 385.815067125,
+  "history": [
+    {
+      "iteration": 0,
+      "texture_loss": 4.899160385131836,
+      "overflow": 0.0
+    },
+    {
+      "iteration": 100,
+      "texture_loss": 3.6805191040039062,
+      "overflow": 0.0004314357356633991
+    },
+    {
+      "iteration": 200,
+      "texture_loss": 1.2393953800201416,
+      "overflow": 0.00020741147454828024
+    },
+    {
+      "iteration": 300,
+      "texture_loss": 0.3950192332267761,
+      "overflow": 0.0006654569297097623
+    },
+    {
+      "iteration": 400,
+      "texture_loss": 0.1705125868320465,
+      "overflow": 0.0007995226187631488
+    },
+    {
+      "iteration": 500,
+      "texture_loss": 0.215936079621315,
+      "overflow": 0.00028189586009830236
+    },
+    {
+      "iteration": 600,
+      "texture_loss": 0.20197074115276337,
+      "overflow": 0.00011582700244616717
+    },
+    {
+      "iteration": 700,
+      "texture_loss": 0.16894124448299408,
+      "overflow": 6.155320443212986e-05
+    },
+    {
+      "iteration": 800,
+      "texture_loss": 0.12501472234725952,
+      "overflow": 0.0001217240933328867
+    },
+    {
+      "iteration": 900,
+      "texture_loss": 0.15316909551620483,
+      "overflow": 9.642935765441507e-06
+    },
+    {
+      "iteration": 1000,
+      "texture_loss": 0.18875914812088013,
+      "overflow": 8.422345126746222e-05
+    },
+    {
+      "iteration": 1100,
+      "texture_loss": 0.16918908059597015,
+      "overflow": 1.1777097824960947e-05
+    },
+    {
+      "iteration": 1200,
+      "texture_loss": 0.14775243401527405,
+      "overflow": 2.2584451642160275e-07
+    },
+    {
+      "iteration": 1300,
+      "texture_loss": 0.08060774207115173,
+      "overflow": 8.464739948976785e-07
+    },
+    {
+      "iteration": 1400,
+      "texture_loss": 0.10673995316028595,
+      "overflow": 4.961602826369926e-07
+    },
+    {
+      "iteration": 1500,
+      "texture_loss": 0.0867483913898468,
+      "overflow": 2.3543495899502886e-06
+    },
+    {
+      "iteration": 1600,
+      "texture_loss": 0.08640797436237335,
+      "overflow": 3.0108640203252435e-06
+    },
+    {
+      "iteration": 1700,
+      "texture_loss": 0.07934441417455673,
+      "overflow": 9.89302293419314e-07
+    },
+    {
+      "iteration": 1800,
+      "texture_loss": 0.08848726004362106,
+      "overflow": 3.852533154713456e-06
+    },
+    {
+      "iteration": 1900,
+      "texture_loss": 0.07594216614961624,
+      "overflow": 8.23765731183812e-08
+    },
+    {
+      "iteration": 2000,
+      "texture_loss": 0.06454460322856903,
+      "overflow": 7.144990377128124e-08
+    },
+    {
+      "iteration": 2100,
+      "texture_loss": 0.07163001596927643,
+      "overflow": 1.6364174371119589e-07
+    },
+    {
+      "iteration": 2200,
+      "texture_loss": 0.08724474906921387,
+      "overflow": 8.737819356952059e-09
+    },
+    {
+      "iteration": 2300,
+      "texture_loss": 0.06822477281093597,
+      "overflow": 0.0
+    },
+    {
+      "iteration": 2400,
+      "texture_loss": 0.0942130833864212,
+      "overflow": 2.9701732273679227e-07
+    },
+    {
+      "iteration": 2500,
+      "texture_loss": 0.08925700932741165,
+      "overflow": 0.0
+    },
+    {
+      "iteration": 2600,
+      "texture_loss": 0.11018864810466766,
+      "overflow": 2.6107289841093007e-07
+    },
+    {
+      "iteration": 2700,
+      "texture_loss": 0.06040925905108452,
+      "overflow": 0.0
+    },
+    {
+      "iteration": 2800,
+      "texture_loss": 0.09244491159915924,
+      "overflow": 1.7951303732388624e-07
+    },
+    {
+      "iteration": 2900,
+      "texture_loss": 0.07212623953819275,
+      "overflow": 4.4357875594869256e-08
+    },
+    {
+      "iteration": 3000,
+      "texture_loss": 0.08498607575893402,
+      "overflow": 1.3148207926860778e-06
+    }
+  ]
+}

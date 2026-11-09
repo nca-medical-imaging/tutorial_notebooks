@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "nca-app-preview",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "cd /private/tmp/claude-1305757276/-Users-jkalkhof--claude-spares-spare-I3t33r/22783b16-a3f1-4aec-8a74-df98bb828e31/scratchpad && exec /usr/bin/python3 -m http.server 8765 --bind 127.0.0.1"],
+      "port": 8765
+    }
+  ]
+}
