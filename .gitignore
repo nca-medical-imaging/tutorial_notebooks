@@ -21,8 +21,11 @@ Thumbs.db
 *.tmp
 *.log
 
-# Local source assets; the notebook embeds the image it needs.
+# Local source assets; the notebook loads its target from data/.
 assets/
 
 # Files the notebook downloads when run outside the repository (e.g. Colab).
 nca_data/
+
+# Locally generated browser backup of the tutorial notebooks.
+site/
