@@ -23,3 +23,6 @@ Thumbs.db
 
 # Local source assets; the notebook embeds the image it needs.
 assets/
+
+# Files the notebook downloads when run outside the repository (e.g. Colab).
+nca_data/
